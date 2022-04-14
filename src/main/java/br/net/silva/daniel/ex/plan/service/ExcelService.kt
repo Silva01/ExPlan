@@ -13,6 +13,7 @@ class ExcelService {
 
     private var workbook : HSSFWorkbook = HSSFWorkbook()
 
+    @Throws(java.lang.Exception::class)
     fun novo(dados : List<List<Excel>>, destinoArquivo : String) {
         val sheet : HSSFSheet = workbook.createSheet()
         preencherTitulo(dados[0], sheet)
