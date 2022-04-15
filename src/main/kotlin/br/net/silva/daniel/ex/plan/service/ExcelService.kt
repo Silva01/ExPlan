@@ -1,6 +1,7 @@
 package br.net.silva.daniel.ex.plan.service
 
 import br.net.silva.daniel.ex.plan.model.Excel
+import br.net.silva.daniel.ex.plan.model.Read
 import org.apache.poi.hssf.usermodel.HSSFSheet
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
 import org.apache.poi.ss.usermodel.Cell
@@ -25,10 +26,11 @@ class ExcelService {
     }
 
     @Throws(IOException::class)
-    fun ler(destino : String) : List<List<Excel>> {
+    fun ler(destino : String) : List<List<Read>> {
         val arquivo = FileInputStream(File(destino))
         val work = HSSFWorkbook(arquivo)
         val sheet = work.getSheetAt(0)
+        val lista = mutableListOf<Read>()
 
         val rowIterator = sheet.rowIterator()
 
@@ -37,11 +39,13 @@ class ExcelService {
             val cellIterator = row.cellIterator()
 
             while (cellIterator.hasNext()) {
-                TODO("Deve preencher o objeto aqui")
+                val cell = cellIterator.next()
+                val read = Read(cell.rowIndex == 0, cell.stringCellValue, cell.columnIndex)
+                lista.add(read)
             }
         }
 
-        TODO("Deve Retornar a lista aqui")
+        return mutableListOf(lista)
     }
 
     private fun preencher(dados : List<Excel>, sheet : HSSFSheet) {
