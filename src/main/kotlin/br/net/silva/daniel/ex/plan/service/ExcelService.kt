@@ -53,7 +53,7 @@ class ExcelService {
     }
 
     private fun preencherTitulo(dados : List<Excel>, sheet: HSSFSheet) {
-        dados.forEach { d -> preencherCelula(d.position(), d.value(), criarRow(sheet, 0)) }
+        dados.forEach { d -> preencherCelula(d.position(), d.title(), criarRow(sheet, 0)) }
     }
 
     private fun incrementarLinha() : Int {
