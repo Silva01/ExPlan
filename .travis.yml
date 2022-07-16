@@ -7,4 +7,13 @@ before_install:
   - chmod +x gradlew
   - chmod +x gradle/wrapper/gradle-wrapper.jar
 script:
-  - ./gradlew test build
+    - chmod 755 gradlew
+    - ls -lah
+    - ls -lah $HOME/.gradle/wrapper/
+    - echo "org.gradle.caching=true
+    org.gradle.parallel=true" >> gradle.properties
+    - travis_wait ./gradlew clean --stacktrace
+    - travis_wait ./gradlew build -x test --stacktrace
+    - travis_wait ./gradlew jacocoTestReport --stacktrace
+    - travis_wait ./gradlew jacocoFullReport --stacktrace
+    - ./gradlew coveralls --stacktrace
