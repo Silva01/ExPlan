@@ -1,6 +1,10 @@
 language: java
 sudo: enabled
 
+install:
+  - gradle assemble
+  - gradle check
+
 jdk:
   - openjdk8
 
