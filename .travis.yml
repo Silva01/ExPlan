@@ -1,9 +1,10 @@
 language: java
+sudo: enabled
 
-services: docker
+install: true
 
-before_install:
-  - docker pull gradle:jdk8
+jdk:
+  - openjdk8
 
 script:
   - gradle test build
