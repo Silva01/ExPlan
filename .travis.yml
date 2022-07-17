@@ -2,14 +2,7 @@ language: java
 sudo: enabled
 
 jdk:
-  - oraclejdk8
-
-dist: trusty
-
-before_install:
-  - gradle wrapper --gradle-version=7.5 --distribution-type=bin
-  - gradle -v
+  - openjdk8
 
 script:
-  - gradle build --scan -s
   - gradle test build
