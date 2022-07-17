@@ -1,4 +1,5 @@
 language: java
+sudo: enabled
 
 jdk:
   - openjdk8
