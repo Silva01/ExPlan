@@ -1,10 +1,15 @@
 language: java
-install:
-  - gradle assemble
+sudo: enabled
 
-os: linux
+jdk:
+  - oraclejdk8
+
 dist: trusty
-jdk: oraclejdk8
+
+before_install:
+  - gradle wrapper --gradle-version=7.5 --distribution-type=bin
+  - gradle -v
 
 script:
   - gradle build --scan -s
+  - gradle test build
