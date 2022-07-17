@@ -4,10 +4,7 @@ sudo: enabled
 install: true
 
 jdk:
-  - openjdk8
+  - gradle:jdk8
 
 script:
-  - gradle wrapper --gradle-version 6.2 --distribution-type all
-  - gradle assemble
-  - gradle check
   - gradle test build
