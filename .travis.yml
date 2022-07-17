@@ -1,10 +1,15 @@
 language: java
+
 sudo: required
+
 jdk:
   - oraclejdk8
+
 dist: trusty
+
 before_install:
   - chmod +x gradlew
-  - ./gradlew assemble
+  - gradle assemble
+
 script:
   - ./gradlew test build
