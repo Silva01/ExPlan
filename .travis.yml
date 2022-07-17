@@ -1,5 +1,4 @@
 language: java
-
 sudo: required
 
 jdk:
@@ -9,7 +8,7 @@ dist: trusty
 
 before_install:
   - chmod +x gradlew
-  - gradle assemble
 
 script:
+  - ./gradlew build --scan -s
   - ./gradlew test build
