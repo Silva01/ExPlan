@@ -1,15 +1,9 @@
 language: java
-sudo: enabled
+install: skip
 
-jdk:
-  - oraclejdk8
-
+os: linux
 dist: trusty
-
-before_install:
-  - ./gradlew wrapper --gradle-version=7.5 --distribution-type=bin
-  - gradle -v
+jdk: oraclejdk8
 
 script:
   - ./gradlew build --scan -s
-  - ./gradlew test build
