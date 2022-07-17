@@ -1,9 +1,10 @@
 language: java
-install: skip
+install:
+  - gradle assemble
 
 os: linux
 dist: trusty
 jdk: oraclejdk8
 
 script:
-  - ./gradlew build --scan -s
+  - gradle build --scan -s
