@@ -53,7 +53,7 @@ class ExcelServiceTest {
         val dadosPlanilha : List<List<Excel>> = mutableListOf(lista)
 
         val service : ExcelService = ExcelService()
-        service.atualizar(dadosPlanilha, "teste.xls", "update.xls", "Sheet0")
+        service.atualizar(dadosPlanilha, "teste.xls", "update.xls")
 
         val planilha = File("update.xls")
 
