@@ -6,6 +6,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
 import org.apache.poi.ss.usermodel.Cell
 import org.apache.poi.ss.usermodel.Row
+import org.apache.poi.ss.usermodel.Workbook
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -23,6 +24,16 @@ class ExcelService {
         preencherTitulo(dados[0], sheet)
         dados.forEach { d -> preencher(d, sheet) }
         salvarArquivo(destinoArquivo)
+    }
+
+    @Throws(java.lang.Exception::class)
+    fun atualizar(dados : List<List<Excel>>, arquivoAtual: String, destinoArquivo : String) {
+        val arquivo = FileInputStream(File(arquivoAtual))
+        val work = HSSFWorkbook(arquivo)
+        val sheet : HSSFSheet = work.getSheetAt(0)
+        preencherTitulo(dados[0], sheet)
+        dados.forEach { d -> preencher(d, sheet) }
+        salvarArquivo(destinoArquivo, work)
     }
 
     @Throws(IOException::class)
@@ -75,6 +86,12 @@ class ExcelService {
     }
 
     private fun salvarArquivo(destino : String) {
+        val output = FileOutputStream(destino)
+        workbook.write(output)
+        output.close()
+    }
+
+    private fun salvarArquivo(destino : String, workbook: Workbook) {
         val output = FileOutputStream(destino)
         workbook.write(output)
         output.close()

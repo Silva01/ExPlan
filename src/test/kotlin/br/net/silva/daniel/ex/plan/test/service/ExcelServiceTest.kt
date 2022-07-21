@@ -44,4 +44,28 @@ class ExcelServiceTest {
         Assertions.assertEquals("Opa", dado[0][1].value)
 
     }
+
+    @Test
+    @Order(3)
+    fun deveAtualizarUmaPlanilha() {
+        val dado: DadoTeste = DadoTeste("teste", "Isso e um teste unitario", 0)
+        val lista : List<Excel> = mutableListOf(dado)
+        val dadosPlanilha : List<List<Excel>> = mutableListOf(lista)
+
+        val service : ExcelService = ExcelService()
+        service.atualizar(dadosPlanilha, "teste.xls", "update.xls")
+
+        val planilha = File("update.xls")
+
+        Assertions.assertTrue(planilha.exists())
+
+        val dadoLeitura = service.ler("update.xls")
+
+        Assertions.assertTrue(Objects.nonNull(dadoLeitura))
+        Assertions.assertEquals(1, dadoLeitura.size)
+        Assertions.assertTrue(dadoLeitura[0][0].title)
+        Assertions.assertEquals("teste", dadoLeitura[0][0].value)
+        Assertions.assertEquals(0, dadoLeitura[0][0].position)
+        Assertions.assertEquals("Isso e um teste unitario", dadoLeitura[0][1].value)
+    }
 }
