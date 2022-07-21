@@ -1,8 +1,11 @@
 language: java
+sudo: enabled
+
+install: true
+
 jdk:
-  - oraclejdk8
-before_install:
-  - chmod +x gradlew
-  - chmod +x gradle/wrapper/gradle-wrapper.jar
+  - openjdk8
+
 script:
-  - ./gradlew test build
+  - gradle build
+  - gradle test
