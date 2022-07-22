@@ -79,4 +79,23 @@ class ExcelServiceTest {
 
         Assertions.assertTrue(planilha.exists())
     }
+
+    @Test
+    @Order(5)
+    fun deveDeletarPlanilhas() {
+        val service = ExcelService()
+        val dado: DadoTeste = DadoTeste("teste", "Opa", 0)
+        val lista : List<Excel> = mutableListOf(dado)
+        val dadosPlanilha : List<List<Excel>> = mutableListOf(lista)
+
+        service.novo(dadosPlanilha, "apagar.xls")
+
+        val planilha1 = File("apagar.xls")
+        Assertions.assertTrue(planilha1.exists())
+
+        service.apagar("apagar.xls")
+
+        val planilha = File("apagar.xls")
+        Assertions.assertFalse(planilha.exists())
+    }
 }
