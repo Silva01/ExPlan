@@ -4,7 +4,6 @@ import br.net.silva.daniel.ex.plan.model.Excel
 import br.net.silva.daniel.ex.plan.service.ExcelService
 import br.net.silva.daniel.ex.plan.test.model.DadoTeste
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.ClassOrderer.OrderAnnotation
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test
@@ -74,7 +73,7 @@ class ExcelServiceTest {
     fun deveMoverUmaPlanilha() {
         val service = ExcelService()
 
-        service.move("teste.xls", "movido.xls")
+        service.mover("teste.xls", "movido.xls")
 
         val planilha = File("movido.xls")
 
