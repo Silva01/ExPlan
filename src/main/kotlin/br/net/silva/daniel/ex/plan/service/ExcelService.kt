@@ -38,7 +38,9 @@ class ExcelService {
         salvarArquivo(destinoArquivo, work)
     }
 
-    fun move(pathOrigem: String, pathDestino: String) = Files.move(Paths.get(pathOrigem), Paths.get(pathDestino))
+    fun mover(pathOrigem: String, pathDestino: String) = Files.move(Paths.get(pathOrigem), Paths.get(pathDestino))
+
+    fun apagar(pathArquivo: String) = Files.delete(Paths.get(pathArquivo))
 
     @Throws(IOException::class)
     fun ler(destino : String) : List<List<Read>> {

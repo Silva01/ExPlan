@@ -4,7 +4,6 @@ import br.net.silva.daniel.ex.plan.model.Excel
 import br.net.silva.daniel.ex.plan.service.ExcelService
 import br.net.silva.daniel.ex.plan.test.model.DadoTeste
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.ClassOrderer.OrderAnnotation
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test
@@ -74,10 +73,29 @@ class ExcelServiceTest {
     fun deveMoverUmaPlanilha() {
         val service = ExcelService()
 
-        service.move("teste.xls", "movido.xls")
+        service.mover("teste.xls", "movido.xls")
 
         val planilha = File("movido.xls")
 
         Assertions.assertTrue(planilha.exists())
+    }
+
+    @Test
+    @Order(5)
+    fun deveDeletarPlanilhas() {
+        val service = ExcelService()
+        val dado: DadoTeste = DadoTeste("teste", "Opa", 0)
+        val lista : List<Excel> = mutableListOf(dado)
+        val dadosPlanilha : List<List<Excel>> = mutableListOf(lista)
+
+        service.novo(dadosPlanilha, "apagar.xls")
+
+        val planilha1 = File("apagar.xls")
+        Assertions.assertTrue(planilha1.exists())
+
+        service.apagar("apagar.xls")
+
+        val planilha = File("apagar.xls")
+        Assertions.assertFalse(planilha.exists())
     }
 }
