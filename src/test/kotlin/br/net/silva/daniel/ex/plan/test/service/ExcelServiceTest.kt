@@ -68,4 +68,16 @@ class ExcelServiceTest {
         Assertions.assertEquals(0, dadoLeitura[0][0].position)
         Assertions.assertEquals("Isso e um teste unitario", dadoLeitura[0][1].value)
     }
+
+    @Test
+    @Order(4)
+    fun deveMoverUmaPlanilha() {
+        val service = ExcelService()
+
+        service.move("teste.xls", "movido.xls")
+
+        val planilha = File("movido.xls")
+
+        Assertions.assertTrue(planilha.exists())
+    }
 }

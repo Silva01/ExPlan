@@ -11,6 +11,8 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
+import java.nio.file.Files
+import java.nio.file.Paths
 
 class ExcelService {
 
@@ -35,6 +37,8 @@ class ExcelService {
         dados.forEach { d -> preencher(d, sheet) }
         salvarArquivo(destinoArquivo, work)
     }
+
+    fun move(pathOrigem: String, pathDestino: String) = Files.move(Paths.get(pathOrigem), Paths.get(pathDestino))
 
     @Throws(IOException::class)
     fun ler(destino : String) : List<List<Read>> {
