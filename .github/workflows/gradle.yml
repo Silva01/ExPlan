@@ -30,6 +30,6 @@ jobs:
     - name: Change wrapper permissions
       run: chmod +x ./gradlew
     - name: execution wrapper gradle
-      run: ./gradlew assemble
+      run: gradle assemble
     - name: Build with Gradle
-      run: ./gradlew build
+      run: gradle build
