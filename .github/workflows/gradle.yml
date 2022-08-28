@@ -33,3 +33,5 @@ jobs:
       run: gradle assemble
     - name: Build with Gradle
       run: gradle build
+    - name: Build with Gradle
+      run: gradle test
