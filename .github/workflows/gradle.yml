@@ -29,9 +29,5 @@ jobs:
         java-version: 1.8
     - name: Change wrapper permissions
       run: chmod +x ./gradlew
-    - name: execution wrapper gradle
-      run: gradle assemble
-    - name: Build with Gradle
-      run: gradle build
     - name: Tests with Gradle
       run: gradle test --tests "*"
