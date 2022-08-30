@@ -66,6 +66,7 @@ class ExcelServiceTest {
         Assertions.assertEquals("teste", dadoLeitura[0][0].value)
         Assertions.assertEquals(0, dadoLeitura[0][0].position)
         Assertions.assertEquals("Isso e um teste unitario", dadoLeitura[0][1].value)
+
     }
 
     @Test
